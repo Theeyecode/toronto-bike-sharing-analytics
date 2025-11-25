@@ -1,11 +1,13 @@
 from pathlib import Path
 import pandas as pd
 
-from src.utils import get_logger
+from utils import get_logger
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
+DATA_DIR = PROJECT_ROOT / "data"
+RAW_DATA_DIR = DATA_DIR / "raw"
+CLEAN_DATA_DIR = DATA_DIR / "clean" 
 
 logger = get_logger(__name__)
 
@@ -25,3 +27,14 @@ def load_bike_data(filename: str, **kwargs) -> pd.DataFrame:
     logger.info("Loaded dataset with shape %s rows x %s columns", df.shape[0], df.shape[1])
 
     return df
+
+def save_cleaned_data(df: pd.DataFrame, filename: str, index: bool = False) -> Path:
+    
+    CLEAN_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = CLEAN_DATA_DIR / filename
+
+    df.to_csv(output_path, index=index)
+    logger.info("Saved cleaned dataset to %s", output_path)
+
+    return output_path
+

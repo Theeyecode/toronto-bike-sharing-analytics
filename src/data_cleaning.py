@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Literal
 import pandas as pd
 
-from src.utils import get_logger
+from utils import get_logger
 
 logger = get_logger(__name__)
 
@@ -28,19 +28,27 @@ def standardize_user_type(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
 def group_bike_model(df: pd.DataFrame) -> pd.DataFrame:
+   
     df = df.copy()
-    raw_model = df["Model"].replace("NULL", pd.NA)
 
-    known_models = {"ICONIC", "EFIT", "EFIT G5"}
+    def map_model(x):
+        if pd.isna(x):
+            return "Unknown"
+        x = x.strip().upper()
 
-    grouped = raw_model.where(raw_model.isin(known_models), other="Other")
+        if x == "ICONIC":
+            return "ICONIC"
+        elif x == "EFIT":
+            return "EFIT"
+        elif x == "EFIT G5":
+            return "EFIT G5"
+        else:
+            return "Unknown"
 
-    df["bike_model_group"] = grouped.fillna("Unknown")
+    df["bike_model_group"] = df["Model"].apply(map_model)
 
-    logger.info("Grouped bike models. Value counts:\n%s",
-                df["bike_model_group"].value_counts())
+    logger.info("Grouped bike models. Value counts:\n%s", df["bike_model_group"].value_counts())
 
     return df
 def parse_datetime_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -118,3 +126,54 @@ def clean_trip_duration(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     return df
+def clean_station_fields(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    # Build lookup 
+    start_lookup = (
+        df.dropna(subset=["Start Station Name"])
+          .drop_duplicates(subset=["Start Station Id"])[["Start Station Id", "Start Station Name"]]
+          .set_index("Start Station Id")["Start Station Name"]
+          .to_dict()
+    )
+
+    end_lookup = (
+        df.dropna(subset=["End Station Name"])
+          .drop_duplicates(subset=["End Station Id"])[["End Station Id", "End Station Name"]]
+          .set_index("End Station Id")["End Station Name"]
+          .to_dict()
+    )
+
+    missing_start_before = df["Start Station Name"].isna().sum()
+    missing_end_before = df["End Station Name"].isna().sum()
+
+    # Fill missing names 
+    df["start_station_name_clean"] = df.apply(
+        lambda row: start_lookup.get(row["Start Station Id"], f"Unknown Station {row['Start Station Id']}")
+        if pd.isna(row["Start Station Name"]) else row["Start Station Name"],
+        axis=1
+    )
+
+    df["end_station_name_clean"] = df.apply(
+        lambda row: end_lookup.get(row["End Station Id"], f"Unknown Station {row['End Station Id']}")
+        if pd.isna(row["End Station Name"]) else row["End Station Name"],
+        axis=1
+    )
+
+    missing_start_after = df["start_station_name_clean"].eq("Unknown Station").sum()
+    missing_end_after = df["end_station_name_clean"].eq("Unknown Station").sum()
+
+    logger.info(
+        "Station field cleaning summary:\n"
+        "- Original missing Start Station Names: %s\n"
+        "- Original missing End Station Names: %s\n"
+        "- Missing that could not be inferred (Start): %s\n"
+        "- Missing that could not be inferred (End): %s",
+        missing_start_before,
+        missing_end_before,
+        missing_start_after,
+        missing_end_after,
+    )
+
+    return df
+

@@ -31,7 +31,6 @@ _Recommended design principles:_
 
 
 
-
 ## 3. Installing Dependencies
 
 Recommended: use a virtual environment to isolate dependencies.
@@ -74,4 +73,13 @@ pip install -r requirements.txt
 pandas
 numpy
 
----
+## 4. Running Locally
+
+1. upload the dataset into data/raw and name it "toronto-bike.csv"
+
+2.  python src/main.py      OR
+    python3 src/main.py 
+
+## 5. Run test 
+1. if you wrote your test using pytest then use : 
+pytest -q 
