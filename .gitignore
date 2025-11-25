@@ -14,5 +14,7 @@ __pycache__/
 .ipynb_checkpoints
 data/raw/
 data/clean/
+data/raw/
+*.csv
 
 
