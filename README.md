@@ -118,8 +118,14 @@ This will:
 - apply the functions
 - save rhe cleaned dataset to  "data/clean/toronto-bike-clean.csv"
 
+## 5. Use Notebook
 
+Notebook doesn't save the clean data ,
+Just continue using the "df" the df = clean_station_fields(df) is the last function needed to clean the data
+so extend your code to continue using df 
 
-## 5. Run test 
+## 6. Run test 
 1. if you wrote your test using pytest then use : 
 pytest -q 
+
+
