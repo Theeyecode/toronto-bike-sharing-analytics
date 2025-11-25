@@ -42,7 +42,7 @@ Current structure (Sprint 1):
 ```text
 .
 ├── data/
-│   ├── raw/              # original CSV files (e.g., toronto-bike.csv)
+│   ├── raw/              # original CSV files (toronto-bike.csv). ⚠️ Important or you get an error
 │   └── clean/            # cleaned / processed datasets (created by main.py)
 ├── notebooks/            # Jupyter notebooks for EDA & analysis
 ├── outputs/              # figures, tables, exports for the report/dashboard
@@ -109,7 +109,7 @@ numpy
 
 ## 4. Running Locally
 
-1. upload the dataset into data/raw and name it "toronto-bike.csv"
+1. upload the dataset into data/raw and name it "toronto-bike.csv" check 👆 Project Structure
 
 2.  python src/main.py      OR
     python3 src/main.py 
