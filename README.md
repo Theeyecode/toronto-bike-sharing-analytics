@@ -1,38 +1,71 @@
-# Toronto Bike Sharing — README
+# Toronto Bike-Sharing Analytics Tool
 
-Modular Python project for exploratory data analysis (EDA), cleaning, and basic analysis on a financial transactions dataset.
-This README explains the modular architecture, why modular design is beneficial, how to install dependencies from ⁠ requirements.txt ⁠, how to add new modules, and how to run the project locally.
+Modular Python project for data loading, cleaning, validation, and exploratory analysis on a **Toronto bike-sharing trips dataset**.
 
----
+This README explains:
 
-## 1. Overview and Motivation (Theory)
-
-This project follows a _modular architecture_: each responsibility is separated into small, cohesive modules (data loading, cleaning, EDA, analysis, utilities). Key benefits:
-
-•⁠ ⁠*Maintainability:* changes in one part (e.g., loader) do not break the rest.
-•⁠ ⁠*Reusability:* functions and utilities can be imported in other scripts or notebooks.
-•⁠ ⁠*Testability:* each module can be tested in isolation.
-•⁠ ⁠*Scalability:* add new modules (e.g., ⁠ features.py ⁠, ⁠ models.py ⁠) without rewriting the pipeline.
-•⁠ ⁠*Interoperability:* ⁠ src ⁠ is a Python package; it can be run as a module (⁠ python -m src.main ⁠), imported into other projects, or used in a Docker container.
-
-_Recommended design principles:_
-
-•⁠ ⁠Write pure functions whenever possible (no side effects).
-•⁠ ⁠Document with docstrings and add type hints.
-•⁠ ⁠Keep ⁠ main.py ⁠ as an orchestrator that ties small modules together.
-•⁠ ⁠Save outputs (CSV, JSON, images) in a ⁠ project_output/ ⁠ folder for reproducibility.
+- the modular architecture
+- how to install dependencies
+- how to run the cleaning pipeline
+- how to run tests
+- how teammates can use the cleaned data in notebooks
 
 ---
 
+## 1. Overview and Motivation
+
+This project follows a **modular architecture**: each responsibility is separated into small, focused modules (data loading, cleaning, validation, analysis utilities).
+
+**Why modular?**
+
+- **Maintainability** – Changes in one part (e.g., loader) don’t break everything else.
+- **Reusability** – Cleaning and loading functions are reusable in scripts and notebooks.
+- **Testability** – Each module can be unit-tested in isolation (via `pytest`).
+- **Scalability** – New modules (e.g., `analysis_user_type.py`, `analysis_time_patterns.py`) can be added without rewriting the core pipeline.
+- **Collaboration** – Clear structure lets each teammate own specific modules and add features safely.
+
+**Design principles used:**
+
+- Small, pure functions where possible.
+- Type hints and docstrings.
+- `src/main.py` acts as an **orchestrator**, not a dumping ground.
+- Raw data is kept immutable in `data/raw/`.
+- Cleaned data is saved in `data/clean/` for reproducibility.
+- Plots, tables, and exports can live in `outputs/`.
+
+---
 
 ## 2. Project Structure
 
+Current structure (Sprint 1):
 
+```text
+.
+├── data/
+│   ├── raw/              # original CSV files (e.g., toronto-bike.csv)
+│   └── clean/            # cleaned / processed datasets (created by main.py)
+├── notebooks/            # Jupyter notebooks for EDA & analysis
+├── outputs/              # figures, tables, exports for the report/dashboard
+├── src/
+│   ├── __init__.py
+│   ├── main.py           # orchestrates full pipeline (load → clean → save)
+│   ├── data_loader.py    # load raw CSV, save cleaned CSV
+│   ├── data_cleaning.py  # cleaning & enhancement functions:
+│   │                     #   - standardize_user_type
+│   │                     #   - group_bike_model
+│   │                     #   - parse_datetime_columns
+│   │                     #   - clean_trip_duration
+│   │                     #   - clean_station_fields
+│   └── utils.py          # shared logger and utility helpers
+├── tests/
+│   ├── test_data_cleaning.py  # pytest unit tests for cleaning functions
+│   └── test_data_loader.py    # pytest unit tests for loader
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
-
-
-
-## 3. Installing Dependencies
+##  3. Installing Dependencies
 
 Recommended: use a virtual environment to isolate dependencies.
 
@@ -74,4 +107,25 @@ pip install -r requirements.txt
 pandas
 numpy
 
----
+## 4. Running Locally
+
+1. upload the dataset into data/raw and name it "toronto-bike.csv"
+
+2.  python src/main.py      OR
+    python3 src/main.py 
+This will:
+- load data/raw/toronto-bike.csv
+- apply the functions
+- save rhe cleaned dataset to  "data/clean/toronto-bike-clean.csv"
+
+## 5. Use Notebook
+
+Notebook doesn't save the clean data ,
+Just continue using the "df" the df = clean_station_fields(df) is the last function needed to clean the data
+so extend your code to continue using df 
+
+## 6. Run test 
+1. if you wrote your test using pytest then use : 
+pytest -q 
+
+
