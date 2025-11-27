@@ -6,6 +6,7 @@ from feature_engineering import (
     add_weekend_flag,
     add_rush_hour_flag,
 )
+from station_normalization import normalize_station_fields
 
 
 
@@ -15,6 +16,7 @@ def main():
     df = parse_datetime_columns(df)
     df = clean_trip_duration(df)
     df = clean_station_fields(df)
+    df = normalize_station_fields(df)
 
     # New feature engineering
     df = compute_distance_fields(df)
