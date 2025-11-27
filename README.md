@@ -57,15 +57,19 @@ Current structure (Sprint 1):
 │   │                     #   - clean_trip_duration
 │   │                     #   - clean_station_fields
 │   └── utils.py          # shared logger and utility helpers
+├── feature_engineering.py
+│   ├── station_normalization.py
 ├── tests/
 │   ├── test_data_cleaning.py  # pytest unit tests for cleaning functions
 │   └── test_data_loader.py    # pytest unit tests for loader
+│   ├── test_feature_engineering.py
+│   ├── test_station_normalization.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
 
-##  3. Installing Dependencies
+## 3. Installing Dependencies
 
 Recommended: use a virtual environment to isolate dependencies.
 
@@ -111,21 +115,21 @@ numpy
 
 1. upload the dataset into data/raw and name it "toronto-bike.csv" check 👆 Project Structure
 
-2.  python src/main.py      OR
-    python3 src/main.py 
-This will:
+2. python src/main.py OR
+   python3 src/main.py
+   This will:
+
 - load data/raw/toronto-bike.csv
 - apply the functions
-- save rhe cleaned dataset to  "data/clean/toronto-bike-clean.csv"
+- save rhe cleaned dataset to "data/clean/toronto-bike-clean.csv"
 
 ## 5. Use Notebook
 
 Notebook doesn't save the clean data ,
 Just continue using the "df" the df = clean_station_fields(df) is the last function needed to clean the data
-so extend your code to continue using df 
+so extend your code to continue using df
 
-## 6. Run test 
-1. if you wrote your test using pytest then use : 
-pytest -q 
+## 6. Run test
 
-
+1. if you wrote your test using pytest then use :
+   pytest -q
