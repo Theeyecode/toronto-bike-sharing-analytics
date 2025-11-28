@@ -5,7 +5,7 @@ from time_analysis import trips_per_hour, trips_per_weekday, trips_per_month
 
 def sample_df():
     return pd.DataFrame({
-        "trip_id": [1, 2, 3],
+        "Trip Id": [1, 2, 3],
         "start_time": [
             "2021-01-01 08:00",
             "2021-01-02 14:30",

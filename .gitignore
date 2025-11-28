@@ -16,5 +16,6 @@ data/raw/
 data/clean/
 data/raw/
 *.csv
+outputs/
 
 
