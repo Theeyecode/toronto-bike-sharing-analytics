@@ -23,7 +23,7 @@ def main():
     df = clean_trip_duration(df)
     df = clean_station_fields(df)
     df = normalize_station_fields(df)
-
+    save_cleaned_data(df, "toronto-bike-clean.csv", index=False)
 
     df = compute_distance_fields(df)
     df = add_time_features(df)
@@ -37,7 +37,7 @@ def main():
     plot_user_type_comparison(df)
     plot_daily_trips_decomposition(df)
 
-    save_cleaned_data(df, "toronto-bike-clean.csv", index=False)
     
-    if __name__ == "__main__":
-    main()
+    
+if __name__ == "__main__":
+     main()
