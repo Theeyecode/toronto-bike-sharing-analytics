@@ -6,7 +6,6 @@ logger = get_logger(__name__)
 
 
 def normalize_station_name(name: str | float) -> str:
-    
     if pd.isna(name):
         return "Unknown Station"
 

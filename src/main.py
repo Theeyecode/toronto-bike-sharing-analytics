@@ -18,17 +18,24 @@ from analysis import (
     get_peak_stations_by_user_type,
     summarize_time_of_day_by_user_type,
 )
-
+    # 🔹 Limpieza / enriquecimiento base
+from visualizations import (
+    plot_hourly_demand,
+    plot_trip_duration_distribution,
+    plot_top_busiest_stations,
+    plot_user_type_comparison,
+    plot_daily_trips_decomposition,
+)
 
 def main():
     df = load_bike_data("toronto-bike.csv")
-
-    # 🔹 Limpieza / enriquecimiento base
+    df = standardize_user_type(df)
     df = group_bike_model(df)
     df = parse_datetime_columns(df)
     df = clean_trip_duration(df)
     df = clean_station_fields(df)
     df = normalize_station_fields(df)
+    save_cleaned_data(df, "toronto-bike-clean.csv", index=False)
 
     # 🔹 AQUÍ estandarizamos el tipo de usuario (IMPORTANTE)
     df = standardize_user_type(df)
@@ -39,8 +46,6 @@ def main():
     df = add_weekend_flag(df)
     df = add_rush_hour_flag(df)
 
-    # 🔹 Guardar dataset limpio
-    save_cleaned_data(df, "toronto-bike-clean.csv", index=False)
 
     # 🔹 DEBUG rápido: ver columnas disponibles
     print("\nColumns in df right before analysis:")
@@ -63,6 +68,13 @@ def main():
     print("\n=== Time-of-Day vs User Type Summary (first rows) ===")
     print(time_of_day_summary.head())
 
+    plot_hourly_demand(df)
+    plot_trip_duration_distribution(df)
+    plot_top_busiest_stations(df)
+    plot_user_type_comparison(df)
+    plot_daily_trips_decomposition(df)
 
+    
+    
 if __name__ == "__main__":
-    main()
+     main()
