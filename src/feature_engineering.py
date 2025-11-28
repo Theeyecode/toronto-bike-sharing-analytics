@@ -45,6 +45,13 @@ def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.copy()
 
+    # Ensure start_time is a datetime type
+    df["start_time"] = pd.to_datetime(df["start_time"], errors="coerce")
+
+    # Raise error if conversion failed (all NaT)
+    if df["start_time"].isna().all():
+        raise ValueError("start_time column cannot be converted to datetime")
+
     df["start_hour"] = df["start_time"].dt.hour
     df["start_day"] = df["start_time"].dt.day
     df["start_month"] = df["start_time"].dt.month

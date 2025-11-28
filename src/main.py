@@ -27,6 +27,17 @@ from visualizations import (
     plot_daily_trips_decomposition,
 )
 
+from plots_time import (
+    plot_trips_per_hour,
+    plot_trips_per_weekday,
+    plot_trips_per_month,   
+)
+
+from time_analysis import (
+    trips_per_hour,
+    trips_per_weekday,
+    trips_per_month,
+)
 def main():
     df = load_bike_data("toronto-bike.csv")
     df = standardize_user_type(df)
@@ -46,6 +57,14 @@ def main():
     df = add_weekend_flag(df)
     df = add_rush_hour_flag(df)
 
+    # Time-based Analysis Visualizations
+    trips_per_hour_df = trips_per_hour(df)
+    trips_per_weekday_df = trips_per_weekday(df)
+    trips_per_month_df = trips_per_month(df)    
+
+    plot_trips_per_hour(trips_per_hour_df)
+    plot_trips_per_weekday(trips_per_weekday_df)
+    plot_trips_per_month(trips_per_month_df)
 
     # 🔹 DEBUG rápido: ver columnas disponibles
     print("\nColumns in df right before analysis:")
