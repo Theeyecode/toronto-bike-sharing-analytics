@@ -29,7 +29,7 @@ def load_bike_data(filename: str, **kwargs) -> pd.DataFrame:
     return df
 
 def save_cleaned_data(df: pd.DataFrame, filename: str, index: bool = False) -> Path:
-    
+    print("Saving cleaned data...")
     CLEAN_DATA_DIR.mkdir(parents=True, exist_ok=True)
     output_path = CLEAN_DATA_DIR / filename
 
