@@ -123,6 +123,10 @@ numpy
 - apply the functions
 - save rhe cleaned dataset to "data/clean/toronto-bike-clean.csv"
 
+3.  streamlit run app.py
+    This will:
+- Create a local host and open a browser to show the web app
+
 ## 5. Use Notebook
 
 Notebook doesn't save the clean data ,
