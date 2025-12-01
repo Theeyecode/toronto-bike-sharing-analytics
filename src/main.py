@@ -19,6 +19,8 @@ from analysis import (
     summarize_time_of_day_by_user_type,
 )
 
+from analysis_outliers import detect_trip_duration_outliers
+
 
 def main():
     df = load_bike_data("toronto-bike.csv")
@@ -62,6 +64,14 @@ def main():
 
     print("\n=== Time-of-Day vs User Type Summary (first rows) ===")
     print(time_of_day_summary.head())
+
+    outliers_df, outliers_json = detect_trip_duration_outliers(df, method="iqr")
+
+    print("\n=== OUTLIERS DETECTED (HEAD) ===")
+    print(outliers_df[["trip_duration_clean", "outlier_reason"]].head())
+
+    print("\n=== OUTLIER SUMMARY (JSON-like) ===")
+    print(outliers_json)
 
 
 if __name__ == "__main__":
