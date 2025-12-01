@@ -18,7 +18,9 @@ from analysis import (
     get_peak_stations_by_user_type,
     summarize_time_of_day_by_user_type,
 )
-    # 🔹 Limpieza / enriquecimiento base
+
+from analysis_outliers import detect_trip_duration_outliers
+
 from visualizations import (
     plot_hourly_demand,
     plot_trip_duration_distribution,
@@ -86,6 +88,14 @@ def main():
 
     print("\n=== Time-of-Day vs User Type Summary (first rows) ===")
     print(time_of_day_summary.head())
+
+    outliers_df, outliers_json = detect_trip_duration_outliers(df, method="iqr")
+
+    print("\n=== OUTLIERS DETECTED (HEAD) ===")
+    print(outliers_df[["trip_duration_clean", "outlier_reason"]].head())
+
+    print("\n=== OUTLIER SUMMARY (JSON-like) ===")
+    print(outliers_json)
 
     plot_hourly_demand(df)
     plot_trip_duration_distribution(df)
