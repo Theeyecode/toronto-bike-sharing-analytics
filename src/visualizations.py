@@ -6,26 +6,12 @@ from typing import Tuple
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from utils import get_logger
+from utils import (get_logger, save_fig)
 
 logger = get_logger(__name__)
 
 
-def _ensure_dir(out_dir: str | Path) -> Path:
-    """Create the output directory if it does not exist and return it as Path."""
-    out_path = Path(out_dir)
-    out_path.mkdir(parents=True, exist_ok=True)
-    return out_path
 
-
-def _save_fig(fig: plt.Figure, out_dir: str | Path, filename: str) -> Path:
-    """Helper to save a figure and log the path."""
-    out_path = _ensure_dir(out_dir)
-    output_file = out_path / filename
-    fig.savefig(output_file, bbox_inches="tight")
-    plt.close(fig)
-    logger.info("Saved figure to %s", output_file)
-    return output_file
 
 
 def plot_hourly_demand(
@@ -56,7 +42,7 @@ def plot_hourly_demand(
     ax.set_xticklabels(range(0, 24))
     fig.tight_layout()
 
-    return _save_fig(fig, out_dir, "hourly_demand.png")
+    return save_fig(fig, out_dir, "hourly_demand.png")
 
 
 def plot_trip_duration_distribution(
@@ -88,7 +74,7 @@ def plot_trip_duration_distribution(
     ax.set_ylabel("Number of Trips")
     fig.tight_layout()
 
-    return _save_fig(fig, out_dir, "trip_duration_distribution.png")
+    return save_fig(fig, out_dir, "trip_duration_distribution.png")
 
 def plot_top_busiest_stations(
     df: pd.DataFrame,
@@ -116,7 +102,7 @@ def plot_top_busiest_stations(
     ax.set_ylabel("Station")
     fig.tight_layout()
 
-    return _save_fig(fig, out_dir, "top_busiest_stations.png")
+    return save_fig(fig, out_dir, "top_busiest_stations.png")
 
 
 def plot_user_type_comparison(
@@ -139,7 +125,7 @@ def plot_user_type_comparison(
     ax.set_ylabel("Number of Trips")
     fig.tight_layout()
 
-    return _save_fig(fig, out_dir, "user_type_comparison.png")
+    return save_fig(fig, out_dir, "user_type_comparison.png")
 
 def plot_daily_trips_decomposition(
     df: pd.DataFrame,
@@ -187,4 +173,4 @@ def plot_daily_trips_decomposition(
 
     fig.tight_layout()
 
-    return _save_fig(fig, out_dir, "daily_trips_decomposition.png")
+    return save_fig(fig, out_dir, "daily_trips_decomposition.png")
