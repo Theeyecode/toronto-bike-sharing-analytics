@@ -32,6 +32,18 @@ def trips_per_month(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def trips_by_user_type(df: pd.DataFrame) -> pd.DataFrame:
+    if "User Type" not in df.columns:
+        raise KeyError("Missing User Type column. Expected values: Casual, Member")
+
+    return (
+        df.groupby("User Type")
+        .size()
+        .reset_index(name="trip_count")
+        .sort_values("trip_count", ascending=False)
+    )
+
+
 
 
 # import pandas as pd
