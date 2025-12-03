@@ -7,23 +7,7 @@ import streamlit as st
 def render(df: pd.DataFrame) -> None:
     st.title("Toronto Bike-Sharing — Overview")
 
-#     st.markdown(
-      
-#    """
-#         This page is the high-level **overview** for the project.
 
-#         Emmanuel owns:
-#         - The **Streamlit foundation** (navigation, layout, data integration)
-#         - Coordinating how other pages plug into this app
-
-#         Use the sidebar to jump to:
-#         - **Time-based Trends (Dhruv)**
-#         - **User & Duration Insights (Javier & Ingrid)**
-#         - **Station & Route Insights (Jorge & Ingrid)**
-#         """
-
-       
-#     )
 
     total_trips = len(df)
     start_date = df["start_time"].min() if "start_time" in df.columns else None
