@@ -91,21 +91,21 @@ def render(df: pd.DataFrame) -> None:
     st.image(str(month_path), use_container_width=True)
 
    
-    # TRIPS BY USER TYPE
-    st.subheader("Trips by User Type")
+    # # TRIPS BY USER TYPE
+    # st.subheader("Trips by User Type")
 
-    try:
-        user_df = trips_by_user_type(filtered_df)
+    # try:
+    #     user_df = trips_by_user_type(filtered_df)
 
-        fig, ax = plt.subplots(figsize=(6, 4))
-        ax.bar(user_df["User Type"], user_df["trip_count"])
-        ax.set_title("User Type Breakdown")
-        ax.set_ylabel("Trips")
+    #     fig, ax = plt.subplots(figsize=(6, 4))
+    #     ax.bar(user_df["User Type"], user_df["trip_count"])
+    #     ax.set_title("User Type Breakdown")
+    #     ax.set_ylabel("Trips")
 
-        st.pyplot(fig)
+    #     st.pyplot(fig)
 
-    except KeyError as e:
-        st.warning(str(e))
+    # except KeyError as e:
+    #     st.warning(str(e))
 
     st.markdown("---")
     st.info("Developer notes:")
