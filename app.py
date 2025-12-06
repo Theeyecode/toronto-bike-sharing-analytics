@@ -120,6 +120,7 @@ try:
     from ui.time_trends import render as render_time_trends
     from ui.user_duration_insights import render as render_user_duration
     from ui.station_route_insights import render as render_station_route
+    from ui.destination_flow import render as render_destination_flow
 except Exception as e:
 
     st.title("Toronto Bike-Sharing Analytics")
@@ -141,6 +142,7 @@ def main() -> None:
                 "Time-based Trends",
                 "User & Duration Insights",
                 "Station & Route Insights",
+                "Destination Flow"
             ),
         )
 
@@ -169,6 +171,8 @@ def main() -> None:
             render_user_duration(df)
         elif page.startswith("Station & Route Insights"):
             render_station_route(df)
+        elif page.startswith("Destination Flow"):
+            render_destination_flow(df)
         else:
             st.error("Unknown page selection.")
 if __name__ == "__main__":
