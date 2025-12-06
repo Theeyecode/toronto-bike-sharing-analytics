@@ -12,62 +12,95 @@ st.set_page_config(
 CUSTOM_CSS = """
 <style>
 
-/* Fondo general suave */
+/* Forzar modo oscuro en toda la app */
+:root {
+    color-scheme: dark !important;
+}
+
+/* Fondo general negro */
 .stApp {
-    background: linear-gradient(135deg, #f5f7ff 0%, #e3f2fd 40%, #ffffff 100%);
+    background: #000000 !important;
+    color: #ffffff !important;
 }
 
-/* SIDEBAR: fondo azul oscuro y texto blanco grande */
+/* Sidebar negro */
 section[data-testid="stSidebar"] {
-    background: #020617;  /* azul muy oscuro */
-    color: #e5e7eb;
+    background: #000000 !important;
+    color: #ffffff !important;
 }
 
+/* Títulos del sidebar */
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
-    color: #f9fafb;
-    font-size: 1.4rem;
-    font-weight: 700;
+    color: #ffffff !important;
+    font-weight: 700 !important;
 }
 
-/* Texto del menú (radio buttons, labels, etc.) */
+/* Texto del sidebar */
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] span {
     color: #ffffff !important;
-    font-size: 1.05rem !important;
-    font-weight: 500 !important;
 }
 
-/* Contenedor principal tipo "tarjeta" (si lo usas en las páginas) */
+/* Contenedor principal tipo tarjeta */
 .main-block {
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: #111111 !important;
+    color: #ffffff !important;
     border-radius: 18px;
     padding: 1.8rem 2.2rem;
     margin-top: 1rem;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 0 25px rgba(255,255,255,0.08);
 }
 
-/* Título principal más grande y elegante */
-.main-title, h1 {
-    font-size: 2.4rem !important;
-    font-weight: 800 !important;
+/* Títulos principales blancos */
+.main-title, h1, h2, h3, h4, h5 {
+    color: #ffffff !important;
 }
 
-/* Estilos para la tabla de muestra (st.dataframe) */
+/* Tablas oscuro total */
 [data-testid="stDataFrame"] thead tr th {
-    background-color: #0f172a !important;
-    color: #f9fafb !important;
-    font-weight: 600;
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
 }
 
 [data-testid="stDataFrame"] tbody tr:nth-child(even) {
-    background-color: #f1f5f9 !important;
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
 }
 
 [data-testid="stDataFrame"] tbody tr:nth-child(odd) {
-    background-color: #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Inputs y selects tema oscuro */
+input, textarea, select {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #444444 !important;
+}
+
+.stTextInput input,
+.stSelectbox div[data-baseweb="select"],
+.stNumberInput input {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #444444 !important;
+}
+
+/* Botones en modo oscuro */
+.stButton button {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+    border: 1px solid #555555 !important;
+}
+
+.stButton button:hover {
+    background-color: #333333 !important;
+    color: #ffffff !important;
 }
 
 </style>
