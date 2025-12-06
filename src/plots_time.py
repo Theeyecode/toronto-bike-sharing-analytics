@@ -15,6 +15,8 @@ def plot_trips_per_hour(df: pd.DataFrame,
     ax.set_ylabel("Trip Count")
     ax.set_xticks(range(0, 24))
     return save_fig(fig, out_dir, "trips_per_hour.png")
+    
+    
 
 
 def plot_trips_per_weekday(df: pd.DataFrame,
@@ -37,7 +39,7 @@ def plot_trips_per_weekday(df: pd.DataFrame,
     ax.set_ylabel("Trip Count")
     plt.xticks(rotation=20)
     return save_fig(fig, out_dir, "trips_per_weekday.png")
-
+    
 
 def plot_trips_per_month(df: pd.DataFrame,
                          out_dir="outputs/plots/time_based_analysis",
@@ -51,6 +53,7 @@ def plot_trips_per_month(df: pd.DataFrame,
     ax.set_ylabel("Trip Count")
     ax.set_xticks(range(1, 13))
     return save_fig(fig, out_dir, "trips_per_month.png")
+    
 
 
 
