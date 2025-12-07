@@ -47,6 +47,8 @@ Current structure (Sprint 1):
 ├── notebooks/            # Jupyter notebooks for EDA & analysis
 ├── outputs/              # figures, tables, exports for the report/dashboard
 ├── src/
+│   ├── ui/
+│       ├── overview.py
 │   ├── __init__.py
 │   ├── main.py           # orchestrates full pipeline (load → clean → save)
 │   ├── data_loader.py    # load raw CSV, save cleaned CSV
@@ -57,6 +59,7 @@ Current structure (Sprint 1):
 │   │                     #   - clean_trip_duration
 │   │                     #   - clean_station_fields
 │   └── utils.py          # shared logger and utility helpers
+│   └── app_data.py          
 ├── feature_engineering.py
 │   ├── station_normalization.py
 ├── tests/
@@ -122,6 +125,10 @@ numpy
 - load data/raw/toronto-bike.csv
 - apply the functions
 - save rhe cleaned dataset to "data/clean/toronto-bike-clean.csv"
+
+3.  streamlit run app.py
+    This will:
+- Create a local host and open a browser to show the web app
 
 ## 5. Use Notebook
 
