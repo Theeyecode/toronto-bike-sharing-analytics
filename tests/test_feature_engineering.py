@@ -50,7 +50,9 @@ def test_compute_distance_fields_missing_columns_noop():
     assert result.equals(df)
 
 
-def test_add_time_features_success():
+@pytest.mark.filterwarnings("ignore:Could not infer format")
+def test_add_time_features_raises_on_all_nat():
+
     df = pd.DataFrame(
         {
             "start_time": [

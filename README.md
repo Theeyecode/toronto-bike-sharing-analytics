@@ -47,6 +47,8 @@ Current structure (Sprint 1):
 ├── notebooks/            # Jupyter notebooks for EDA & analysis
 ├── outputs/              # figures, tables, exports for the report/dashboard
 ├── src/
+│   ├── ui/
+│       ├── overview.py
 │   ├── __init__.py
 │   ├── main.py           # orchestrates full pipeline (load → clean → save)
 │   ├── data_loader.py    # load raw CSV, save cleaned CSV
@@ -57,6 +59,7 @@ Current structure (Sprint 1):
 │   │                     #   - clean_trip_duration
 │   │                     #   - clean_station_fields
 │   └── utils.py          # shared logger and utility helpers
+│   └── app_data.py          
 ├── feature_engineering.py
 │   ├── station_normalization.py
 ├── tests/

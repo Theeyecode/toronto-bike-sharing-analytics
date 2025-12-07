@@ -80,15 +80,15 @@ def render(df: pd.DataFrame) -> None:
         if top_stations_img.exists():
             st.image(
                 str(top_stations_img),
-                use_column_width=True,
+                use_container_width=True,
             )
         else:
             st.warning(f"Image not found: {top_stations_img}")
 
     st.markdown("---")
+    st.info("Developer notes:")
     st.markdown(
         """
-        ### Developer Notes
         - Uses columns: **Start Station Name**, **End Station Name**.
         - Computes OD pair as `"start → end"`.
         - Shows top 10 busiest stations & routes.

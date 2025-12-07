@@ -74,9 +74,9 @@ def render(df: pd.DataFrame) -> None:
     st.plotly_chart(sankey_fig, use_container_width=True)
 
     st.markdown("---")
+    st.info("Developer notes:")
     st.markdown(
         """
-        ### Developer Notes
         - **Uses Plotly Sankey** for high-performance visualization.
         - Optimized by limiting to **Top 20 OD pairs**.
         - Uses columns:  

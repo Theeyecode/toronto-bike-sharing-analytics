@@ -55,7 +55,7 @@ def render(df: pd.DataFrame) -> None:
             st.image(
                 str(user_type_img),
                 caption="Trips by User Type",
-                use_column_width=True,
+                use_container_width=True,
             )
         else:
             st.warning(f"Image not found: {user_type_img}")
@@ -102,10 +102,9 @@ def render(df: pd.DataFrame) -> None:
     st.write(grouped)
 
     # --- DEVELOPER NOTES ---
+    st.info("Developer notes:")
     st.markdown(
         """
-        ---
-        ## Developer Notes
         - Using column: `user_type_standardized` for segmentation
         - Using column: `trip_duration_clean` converted to **minutes** for all stats and charts
         - Charts configured with `use_container_width=True` for responsive layout

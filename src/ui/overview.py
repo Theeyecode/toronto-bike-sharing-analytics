@@ -24,11 +24,21 @@ def render(df: pd.DataFrame) -> None:
     st.markdown("### Sample of Cleaned Data")
     st.dataframe(df.head(10), use_container_width=True)
 
+    st.info("Developer notes:")
     st.markdown(
-        #Dashboard explanation goes here
-         
-             """
-        **Developer notes goes here :**
+        """
+        - This page is the entry point to the dashboard.
 
+        - Keep it focused on:
+
+            - Total trips, date range, user-type count, and a small data preview.
+
+            - A short explanation of what each page in the sidebar does and who owns it.
+
+        - Do not put heavy visualizations here; those belong to the dedicated analytics pages.
+
+        - Any new metrics added should be high-level KPIs only (e.g., total distance, average trip duration).
+
+        - This page should always remain fast to load, since Streamlit opens it first.
         """
     )
