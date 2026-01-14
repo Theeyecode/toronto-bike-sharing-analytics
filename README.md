@@ -130,6 +130,8 @@ numpy
     This will:
 - Create a local host and open a browser to show the web app
 
+<img width="1910" height="1022" alt="Screenshot 2026-01-13 at 8 57 18 PM" src="https://github.com/user-attachments/assets/755d5824-e113-4f0c-ade2-8cc5c747cc3f" />
+
 ## 5. Use Notebook
 
 Notebook doesn't save the clean data ,
